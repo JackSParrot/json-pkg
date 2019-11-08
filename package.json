@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "displayName": "jacksparrot JSON",
   "description": "This json tool will help you working with jsons in your game",
-  "unity": "2018.4",
+  "unity": "2018.1",
   "unityRelease": "0f1",
   "dependencies": {
  },
