@@ -15,7 +15,7 @@ The [Unity Package Manager](https://docs.unity3d.com/Packages/com.unity.package-
     ```json
     {
         "dependencies": {
-            "com.unity.ads": "2.0.8",
+            "com.unity.package-manager-ui": "2.2.0",
             "es.jacksparrot.json": "https://github.com/JackSParrot/json-pkg.git"
         }
     }
@@ -24,8 +24,8 @@ The [Unity Package Manager](https://docs.unity3d.com/Packages/com.unity.package-
 2. To update the package you need to delete the package lock entry in the `lock` section in `Packages/manifest.json`. The entry to delete could look like this:
 
     ```json
-      "es.jacksparrot.json": {
-      "hash": "31fe84232fc9f9c6e9606dc9e5a285886a94f26b",
-      "revision": "package"
+    "es.jacksparrot.json": {
+      "hash": "a7ffd9287ac3c0ce1c68204873d24e540b88940d",
+      "revision": "HEAD"
     }
     ```
