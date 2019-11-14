@@ -10,7 +10,7 @@
 
         public JSONFloat(float value = 0f) : base(JSONValueType.Float)
         {
-            SetFloat(value);
+            _value = value;
         }
 
         public override JSONValue SetInt(int value)

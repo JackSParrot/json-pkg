@@ -10,7 +10,7 @@
 
         public JSONLong(long value = 0L) : base(JSONValueType.Long)
         {
-            SetLong(value);
+            _value = value;
         }
 
         public override JSONValue SetInt(int value)

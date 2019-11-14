@@ -27,7 +27,25 @@ namespace JackSParrot.JSON
             }
         }
 
+        public JSONArray(List<uint> items) : base(JSONType.Array)
+        {
+            _values = new List<JSON>();
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
+
         public JSONArray(List<long> items) : base(JSONType.Array)
+        {
+            _values = new List<JSON>();
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
+
+        public JSONArray(List<ulong> items) : base(JSONType.Array)
         {
             _values = new List<JSON>();
             foreach (var item in items)
@@ -77,7 +95,25 @@ namespace JackSParrot.JSON
             }
         }
 
+        public JSONArray(uint[] items) : base(JSONType.Array)
+        {
+            _values = new List<JSON>();
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
+
         public JSONArray(long[] items) : base(JSONType.Array)
+        {
+            _values = new List<JSON>();
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
+
+        public JSONArray(ulong[] items) : base(JSONType.Array)
         {
             _values = new List<JSON>();
             foreach (var item in items)
@@ -123,12 +159,32 @@ namespace JackSParrot.JSON
             return retVal;
         }
 
+        public uint[] ToUIntArray()
+        {
+            var retVal = new uint[_values.Count];
+            for (int i = 0; i < _values.Count; ++i)
+            {
+                retVal[i] = _values[i].AsValue().ToUInt();
+            }
+            return retVal;
+        }
+
         public long[] ToLongArray()
         {
             var retVal = new long[_values.Count];
             for (int i = 0; i < _values.Count; ++i)
             {
                 retVal[i] = _values[i].AsValue().ToLong();
+            }
+            return retVal;
+        }
+
+        public ulong[] ToULongArray()
+        {
+            var retVal = new ulong[_values.Count];
+            for (int i = 0; i < _values.Count; ++i)
+            {
+                retVal[i] = _values[i].AsValue().ToULong();
             }
             return retVal;
         }
@@ -179,6 +235,16 @@ namespace JackSParrot.JSON
             foreach (var value in _values)
             {
                 retVal.Add(value.AsValue().ToLong());
+            }
+            return retVal;
+        }
+
+        public List<ulong> ToULongList()
+        {
+            var retVal = new List<ulong>();
+            foreach (var value in _values)
+            {
+                retVal.Add(value.AsValue().ToULong());
             }
             return retVal;
         }

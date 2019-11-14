@@ -16,7 +16,9 @@ namespace JackSParrot.JSON
         String,
         Bool,
         Int,
+        UInt,
         Long,
+        ULong,
         Float
     }
 
@@ -46,50 +48,65 @@ namespace JackSParrot.JSON
         }
 
         public static implicit operator int(JSON data) => data.ToValue().ToInt();
+        public static implicit operator uint(JSON data) => data.ToValue().ToUInt();
         public static implicit operator long(JSON data) => data.ToValue().ToLong();
+        public static implicit operator ulong(JSON data) => data.ToValue().ToULong();
         public static implicit operator float(JSON data) => data.ToValue().ToFloat();
         public static implicit operator bool(JSON data) => data.ToValue().ToBool();
         public static implicit operator string(JSON data) => data.ToString();
 
-        public static implicit operator int[] (JSON data) => data.AsArray().ToIntArray();
-        public static implicit operator long[] (JSON data) => data.AsArray().ToLongArray();
+        public static implicit operator int[](JSON data) => data.AsArray().ToIntArray();
+        public static implicit operator uint[](JSON data) => data.AsArray().ToUIntArray();
+        public static implicit operator long[](JSON data) => data.AsArray().ToLongArray();
+        public static implicit operator ulong[](JSON data) => data.AsArray().ToULongArray();
         public static implicit operator float[] (JSON data) => data.AsArray().ToFloatArray();
         public static implicit operator bool[] (JSON data) => data.AsArray().ToBoolArray();
         public static implicit operator string[] (JSON data) => data.AsArray().ToStringArray();
         public static implicit operator List<int>(JSON data) => data.AsArray().ToIntList();
         public static implicit operator List<long>(JSON data) => data.AsArray().ToLongList();
+        public static implicit operator List<ulong>(JSON data) => data.AsArray().ToULongList();
         public static implicit operator List<float>(JSON data) => data.AsArray().ToFloatList();
         public static implicit operator List<bool>(JSON data) => data.AsArray().ToBoolList();
         public static implicit operator List<string>(JSON data) => data.AsArray().ToStringList();
 
         public static implicit operator Dictionary<string, int>(JSON data) => data.AsObject().ToIntDictionary();
+        public static implicit operator Dictionary<string, uint>(JSON data) => data.AsObject().ToUIntDictionary();
         public static implicit operator Dictionary<string, long>(JSON data) => data.AsObject().ToLongDictionary();
+        public static implicit operator Dictionary<string, ulong>(JSON data) => data.AsObject().ToULongDictionary();
         public static implicit operator Dictionary<string, float>(JSON data) => data.AsObject().ToFloatDictionary();
         public static implicit operator Dictionary<string, bool>(JSON data) => data.AsObject().ToBoolDictionary();
         public static implicit operator Dictionary<string, string>(JSON data) => data.AsObject().ToStringDictionary();
 
         public static implicit operator JSON(int data) => new JSONInt(data);
+        public static implicit operator JSON(uint data) => new JSONUInt(data);
         public static implicit operator JSON(long data) => new JSONLong(data);
+        public static implicit operator JSON(ulong data) => new JSONULong(data);
         public static implicit operator JSON(float data) => new JSONFloat(data);
         public static implicit operator JSON(bool data) => new JSONBool(data);
         public static implicit operator JSON(string data) => new JSONString(data);
 
         public static implicit operator JSON(JSON[] data) => new JSONArray(data);
         public static implicit operator JSON(int[] data) => new JSONArray(data);
+        public static implicit operator JSON(uint[] data) => new JSONArray(data);
         public static implicit operator JSON(long[] data) => new JSONArray(data);
+        public static implicit operator JSON(ulong[] data) => new JSONArray(data);
         public static implicit operator JSON(float[] data) => new JSONArray(data);
         public static implicit operator JSON(bool[] data) => new JSONArray(data);
         public static implicit operator JSON(string[] data) => new JSONArray(data);
         public static implicit operator JSON(List<JSON> data) => new JSONArray(data);
         public static implicit operator JSON(List<int> data) => new JSONArray(data);
+        public static implicit operator JSON(List<uint> data) => new JSONArray(data);
         public static implicit operator JSON(List<long> data) => new JSONArray(data);
+        public static implicit operator JSON(List<ulong> data) => new JSONArray(data);
         public static implicit operator JSON(List<float> data) => new JSONArray(data);
         public static implicit operator JSON(List<bool> data) => new JSONArray(data);
         public static implicit operator JSON(List<string> data) => new JSONArray(data);
 
         public static implicit operator JSON(Dictionary<string, JSON> data) => new JSONObject(data);
         public static implicit operator JSON(Dictionary<string, int> data) => new JSONObject(data);
+        public static implicit operator JSON(Dictionary<string, uint> data) => new JSONObject(data);
         public static implicit operator JSON(Dictionary<string, long> data) => new JSONObject(data);
+        public static implicit operator JSON(Dictionary<string, ulong> data) => new JSONObject(data);
         public static implicit operator JSON(Dictionary<string, float> data) => new JSONObject(data);
         public static implicit operator JSON(Dictionary<string, bool> data) => new JSONObject(data);
         public static implicit operator JSON(Dictionary<string, string> data) => new JSONObject(data);

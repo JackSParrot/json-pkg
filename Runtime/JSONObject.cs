@@ -35,7 +35,25 @@ namespace JackSParrot.JSON
             }
         }
 
+        public JSONObject(Dictionary<string, uint> other) : base(JSONType.Object)
+        {
+            _values = new Dictionary<string, JSON>();
+            foreach (var item in other)
+            {
+                Add(item.Key, item.Value);
+            }
+        }
+
         public JSONObject(Dictionary<string, long> other) : base(JSONType.Object)
+        {
+            _values = new Dictionary<string, JSON>();
+            foreach (var item in other)
+            {
+                Add(item.Key, item.Value);
+            }
+        }
+
+        public JSONObject(Dictionary<string, ulong> other) : base(JSONType.Object)
         {
             _values = new Dictionary<string, JSON>();
             foreach (var item in other)
@@ -74,9 +92,19 @@ namespace JackSParrot.JSON
         public Dictionary<string, int> ToIntDictionary()
         {
             var retVal = new Dictionary<string, int>();
-            foreach(var kvp in _values)
+            foreach (var kvp in _values)
             {
                 retVal.Add(kvp.Key, kvp.Value.AsValue().ToInt());
+            }
+            return retVal;
+        }
+
+        public Dictionary<string, uint> ToUIntDictionary()
+        {
+            var retVal = new Dictionary<string, uint>();
+            foreach (var kvp in _values)
+            {
+                retVal.Add(kvp.Key, kvp.Value.AsValue().ToUInt());
             }
             return retVal;
         }
@@ -87,6 +115,16 @@ namespace JackSParrot.JSON
             foreach (var kvp in _values)
             {
                 retVal.Add(kvp.Key, kvp.Value.AsValue().ToLong());
+            }
+            return retVal;
+        }
+
+        public Dictionary<string, ulong> ToULongDictionary()
+        {
+            var retVal = new Dictionary<string, ulong>();
+            foreach (var kvp in _values)
+            {
+                retVal.Add(kvp.Key, kvp.Value.AsValue().ToULong());
             }
             return retVal;
         }

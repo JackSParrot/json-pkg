@@ -10,7 +10,7 @@
 
         public JSONString(string value = "") : base(JSONValueType.String)
         {
-            SetString(value);
+            _value = value;
         }
 
         public override JSONValue SetInt(int value)

@@ -1,47 +1,52 @@
 ﻿namespace JackSParrot.JSON
 {
     [System.Serializable]
-    public class JSONInt : JSONValue
+    public class JSONUInt : JSONValue
     {
-        int _value;
+        uint _value;
 
-        public static implicit operator int(JSONInt data) => data.ToInt();
-        public static implicit operator JSONInt(int data) => new JSONInt(data);
+        public static implicit operator uint(JSONUInt data) => data.ToUInt();
+        public static implicit operator JSONUInt(uint data) => new JSONUInt(data);
 
-        public JSONInt(int value = 0) : base(JSONValueType.Int)
+        public JSONUInt(uint value = 0) : base(JSONValueType.UInt)
         {
             _value = value;
         }
 
-        public override JSONValue SetInt(int value)
+        public override JSONValue SetUInt(uint value)
         {
             _value = value;
             return this;
         }
 
-        public override JSONValue SetLong(long value)
+        public override JSONValue SetInt(int value)
         {
             return SetInt((int)value);
+        }
+
+        public override JSONValue SetLong(long value)
+        {
+            return SetUInt((uint)value);
         }
 
         public override JSONValue SetFloat(float value)
         {
-            return SetInt((int)value);
+            return SetUInt((uint)value);
         }
 
         public override JSONValue SetBool(bool value)
         {
-            return SetInt(value ? 1 : 0);
+            return SetUInt(value ? 1u : 0u);
         }
 
         public override JSONValue SetString(string value)
         {
-            int toParse;
-            if (!int.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out toParse))
+            uint toParse;
+            if (!uint.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out toParse))
             {
                 toParse = 0;
             }
-            return SetInt(toParse);
+            return SetUInt(toParse);
         }
 
         public override string ToString()
@@ -59,7 +64,7 @@
             return _value != 0;
         }
 
-        public override int ToInt()
+        public override uint ToUInt()
         {
             return _value;
         }
@@ -76,12 +81,12 @@
 
         public override JSON Clone()
         {
-            return new JSONInt(_value);
+            return new JSONUInt(_value);
         }
 
         public override bool Equals(JSON other)
         {
-            return base.Equals(other) || (other.GetJSONType() == JSONType.Value && other.AsValue().GetValueType() == JSONValueType.Int && (other.AsValue() as JSONInt)._value == _value);
+            return base.Equals(other) || (other.GetJSONType() == JSONType.Value && other.AsValue().GetValueType() == JSONValueType.UInt && (other.AsValue() as JSONUInt)._value == _value);
         }
     }
 }

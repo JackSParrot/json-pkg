@@ -10,7 +10,7 @@
 
         public JSONBool(bool value = false) : base(JSONValueType.Bool)
         {
-            SetBool(value);
+            _value = value;
         }
 
         public override JSONValue SetInt(int value)

@@ -26,9 +26,19 @@
             return new JSONInt(value);
         }
 
+        public virtual JSONValue SetUInt(uint value)
+        {
+            return new JSONUInt(value);
+        }
+
         public virtual JSONValue SetLong(long value)
         {
             return new JSONLong(value);
+        }
+
+        public virtual JSONValue SetULong(ulong value)
+        {
+            return new JSONULong(value);
         }
 
         public virtual JSONValue SetFloat(float value)
@@ -51,6 +61,11 @@
             return 0;
         }
 
+        public virtual uint ToUInt()
+        {
+            return 0u;
+        }
+
         public virtual bool ToBool()
         {
             return ToInt() != 0;
@@ -59,6 +74,11 @@
         public virtual long ToLong()
         {
             return (long)ToInt();
+        }
+
+        public virtual ulong ToULong()
+        {
+            return (ulong)ToInt();
         }
 
         public virtual float ToFloat()

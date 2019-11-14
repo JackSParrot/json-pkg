@@ -1,32 +1,37 @@
 ﻿namespace JackSParrot.JSON
 {
     [System.Serializable]
-    public class JSONInt : JSONValue
+    public class JSONULong : JSONValue
     {
-        int _value;
+        ulong _value;
 
-        public static implicit operator int(JSONInt data) => data.ToInt();
-        public static implicit operator JSONInt(int data) => new JSONInt(data);
+        public static implicit operator ulong(JSONULong data) => data.ToULong();
+        public static implicit operator JSONULong(ulong data) => new JSONULong(data);
 
-        public JSONInt(int value = 0) : base(JSONValueType.Int)
+        public JSONULong(ulong value = 0UL) : base(JSONValueType.ULong)
         {
             _value = value;
         }
 
         public override JSONValue SetInt(int value)
         {
-            _value = value;
-            return this;
+            return SetLong((long)value);
         }
 
         public override JSONValue SetLong(long value)
         {
-            return SetInt((int)value);
+            return SetULong((ulong)value);
+        }
+
+        public override JSONValue SetULong(ulong value)
+        {
+            _value = value;
+            return this;
         }
 
         public override JSONValue SetFloat(float value)
         {
-            return SetInt((int)value);
+            return SetLong((long)value);
         }
 
         public override JSONValue SetBool(bool value)
@@ -36,12 +41,12 @@
 
         public override JSONValue SetString(string value)
         {
-            int toParse;
-            if (!int.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out toParse))
+            ulong outVal;
+            if (!ulong.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out outVal))
             {
-                toParse = 0;
+                outVal = 0;
             }
-            return SetInt(toParse);
+            return SetULong(outVal);
         }
 
         public override string ToString()
@@ -61,12 +66,17 @@
 
         public override int ToInt()
         {
-            return _value;
+            return (int)_value;
         }
 
         public override long ToLong()
         {
             return (long)_value;
+        }
+
+        public override ulong ToULong()
+        {
+            return _value;
         }
 
         public override float ToFloat()
@@ -76,12 +86,13 @@
 
         public override JSON Clone()
         {
-            return new JSONInt(_value);
+            return new JSONULong(_value);
         }
 
         public override bool Equals(JSON other)
         {
-            return base.Equals(other) || (other.GetJSONType() == JSONType.Value && other.AsValue().GetValueType() == JSONValueType.Int && (other.AsValue() as JSONInt)._value == _value);
+            return base.Equals(other) || (other.GetJSONType() == JSONType.Value && other.AsValue().GetValueType() == JSONValueType.Long && (other.AsValue() as JSONULong)._value == _value);
         }
     }
 }
+

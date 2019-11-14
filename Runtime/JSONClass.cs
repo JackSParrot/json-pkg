@@ -18,9 +18,17 @@ namespace JackSParrot.JSON
             {
                 return new JSONInt(Convert.ToInt32(obj));
             }
+            if (type == typeof(uint))
+            {
+                return new JSONUInt(Convert.ToUInt32(obj));
+            }
             if (type == typeof(long))
             {
                 return new JSONLong(Convert.ToInt64(obj));
+            }
+            if (type == typeof(ulong))
+            {
+                return new JSONULong(Convert.ToUInt64(obj));
             }
             if (type == typeof(float))
             {
@@ -42,9 +50,17 @@ namespace JackSParrot.JSON
                 {
                     retVal.Add(field.Name, (int)field.GetValue(obj));
                 }
+                else if (field.FieldType == typeof(uint))
+                {
+                    retVal.Add(field.Name, (uint)field.GetValue(obj));
+                }
                 else if (field.FieldType == typeof(long))
                 {
                     retVal.Add(field.Name, (long)field.GetValue(obj));
+                }
+                else if (field.FieldType == typeof(ulong))
+                {
+                    retVal.Add(field.Name, (ulong)field.GetValue(obj));
                 }
                 else if (field.FieldType == typeof(float))
                 {
@@ -137,7 +153,7 @@ namespace JackSParrot.JSON
                 {
                     if (value.GetJSONType() == JSONType.Value && value.AsValue().GetValueType() == JSONValueType.Int)
                     {
-                        if(type.IsValueType)
+                        if (type.IsValueType)
                         {
                             object refObj = retVal;
                             field.SetValue(refObj, value.AsValue().ToInt());
@@ -145,6 +161,21 @@ namespace JackSParrot.JSON
                             continue;
                         }
                         field.SetValue(retVal, value.AsValue().ToInt());
+                    }
+                    continue;
+                }
+                if (field.FieldType == typeof(uint))
+                {
+                    if (value.GetJSONType() == JSONType.Value && value.AsValue().GetValueType() == JSONValueType.UInt)
+                    {
+                        if (type.IsValueType)
+                        {
+                            object refObj = retVal;
+                            field.SetValue(refObj, value.AsValue().ToUInt());
+                            retVal = (T)refObj;
+                            continue;
+                        }
+                        field.SetValue(retVal, value.AsValue().ToUInt());
                     }
                     continue;
                 }
@@ -160,6 +191,21 @@ namespace JackSParrot.JSON
                             continue;
                         }
                         field.SetValue(retVal, value.AsValue().ToLong());
+                    }
+                    continue;
+                }
+                if (field.FieldType == typeof(ulong))
+                {
+                    if (value.GetJSONType() == JSONType.Value && value.AsValue().GetValueType() == JSONValueType.ULong)
+                    {
+                        if (type.IsValueType)
+                        {
+                            object refObj = retVal;
+                            field.SetValue(refObj, value.AsValue().ToULong());
+                            retVal = (T)refObj;
+                            continue;
+                        }
+                        field.SetValue(retVal, value.AsValue().ToULong());
                     }
                     continue;
                 }
