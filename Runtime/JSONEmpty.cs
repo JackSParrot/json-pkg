@@ -9,12 +9,12 @@
 
         public override string ToString()
         {
-            return kNull;
+            return "";
         }
 
         public override void Serialize(System.Text.StringBuilder sb)
         {
-            sb.Append(kNull);
+            sb.Append("");
         }
 
         public override JSON Clone()
